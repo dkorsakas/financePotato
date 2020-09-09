@@ -6,23 +6,30 @@ import understandPage from './pages/understandPage';
 import inexpensivePage from './pages/inexpensivePage';
 import homePage from './pages/homePage';
 import Navbar from './components/navbar';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App() {
     return (
         <div className='App'>
-            <BrowserRouter>
-                <Navbar />
-                <Switch>
-                    <Route exact path='/' component={homePage} />
-                    <Route
-                        exact
-                        path='/understand'
-                        component={understandPage}
-                    />
-                    <Route exact path='/good' component={goodPage} />
-                    <Route path='/inexpensive' component={inexpensivePage} />
-                </Switch>
-            </BrowserRouter>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Navbar />
+                    <Switch>
+                        <Route exact path='/' component={homePage} />
+                        <Route
+                            exact
+                            path='/understand'
+                            component={understandPage}
+                        />
+                        <Route exact path='/good' component={goodPage} />
+                        <Route
+                            path='/inexpensive'
+                            component={inexpensivePage}
+                        />
+                    </Switch>
+                </BrowserRouter>
+            </Provider>
         </div>
     );
 }
