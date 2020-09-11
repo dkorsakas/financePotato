@@ -34,4 +34,6 @@ function App() {
     );
 }
 
+//git push -u origin master
+
 export default App;

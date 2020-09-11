@@ -1,12 +1,16 @@
 import { SET_PRODUCTS } from '../types';
 
 const initialState = {
-    customers: {
+    understand: {
         products: '',
         customers: '',
         industry: '',
         form: '',
         geography: '',
+    },
+    isItgood: {
+        operatingIncome: 53,
+        revenue: 1234,
     },
 };
 
@@ -15,7 +19,13 @@ export default function (state = initialState, action) {
         case SET_PRODUCTS:
             return {
                 ...state,
-                customers: { proucts: 'hello' },
+                understand: {
+                    products: '',
+                    customers: action.payload,
+                    industry: '',
+                    form: '',
+                    geography: '',
+                },
             };
         default:
             return state;

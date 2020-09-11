@@ -1,12 +1,17 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { connect } from 'react-redux';
+import { setProducts } from '../redux/actions/valueActions';
+import { useDispatch, useSelector } from 'react-redux';
 
-const handleChange = (event) => {
-    console.log('hello');
-};
+const UnderstandPage = () => {
+    const counter = useSelector((state) => state.understand.customers);
+    const dispatch = useDispatch();
 
-const understandPage = () => {
+    const handleChange = (event) => {
+        console.log('hello');
+        dispatch(setProducts(event.target.value));
+    };
+
     return (
         <div>
             <TextField
@@ -18,12 +23,9 @@ const understandPage = () => {
                 variant='outlined'
                 onChange={handleChange}
             />
+            <p>{counter}</p>
         </div>
     );
 };
 
-const mapStateToProps = (state) => ({
-    customers: state.customers,
-});
-
-export default connect(mapStateToProps)(understandPage);
+export default UnderstandPage;
