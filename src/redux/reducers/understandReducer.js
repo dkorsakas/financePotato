@@ -19,10 +19,15 @@ const initialState = {
         revenue: 1234,
     },
     isItGoodFuture: {
-        breathAnalysis: ['customers', 'supliers'],
-        forcesAnalysis: ['customers', 'supliers', 'substitues', 'newentrants'],
-        moatIdentification: ['government'],
-        marketGrowth: [''],
+        breathAnalysis: ['Customers:', 'Suppliers:'],
+        forcesAnalysis: [
+            'Bargaining power of customers:',
+            'Bargaining power of suppliers:',
+            'Threat of substitutes',
+            'Threat of new entrants',
+        ],
+        moatIdentification: ['Moats:'],
+        marketGrowth: ['Growth:'],
     },
 };
 

@@ -6,10 +6,19 @@ import { v4 as uuidv4 } from 'uuid';
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: 20,
+    },
+    left: {
+        textAlign: 'left',
+        marginTop: 30,
+        fontWeight: 'bold',
     },
 }));
 
@@ -20,56 +29,72 @@ const UnderstandReport = () => {
 
     return (
         <div className={classes.root}>
-            <Typography>This is the report page</Typography>
-            <Typography>Do i understand it?</Typography>
-            <Typography>Products</Typography>
-            <ul className={classes.list}>
+            <Typography variant='h4'>Do i understand it?</Typography>
+            <Typography className={classes.left} variant='h6'>
+                Products
+            </Typography>
+            <List className={classes.list}>
                 {understandPointsRedux.products.map((bulletPoint) => (
-                    <Typography>
-                        <li key={uuidv4()}>{bulletPoint}</li>
-                    </Typography>
+                    <ListItem divider key={uuidv4()}>
+                        <ListItemText primary={`${bulletPoint}`} />
+                    </ListItem>
                 ))}
-            </ul>
-            <Typography>Customers</Typography>
-            <ul className={classes.list}>
+            </List>
+
+            <Typography className={classes.left} variant='h6'>
+                Customers
+            </Typography>
+            <List className={classes.list}>
                 {understandPointsRedux.customers.map((bulletPoint) => (
-                    <Typography>
-                        <li key={uuidv4()}>{bulletPoint}</li>
-                    </Typography>
+                    <ListItem divider key={uuidv4()}>
+                        <ListItemText primary={`${bulletPoint}`} />
+                    </ListItem>
                 ))}
-            </ul>
-            <Typography>Industry</Typography>
-            <ul className={classes.list}>
+            </List>
+
+            <Typography className={classes.left} variant='h6'>
+                Industry
+            </Typography>
+            <List className={classes.list}>
                 {understandPointsRedux.industry.map((bulletPoint) => (
-                    <Typography>
-                        <li key={uuidv4()}>{bulletPoint}</li>
-                    </Typography>
+                    <ListItem divider key={uuidv4()}>
+                        <ListItemText primary={`${bulletPoint}`} />
+                    </ListItem>
                 ))}
-            </ul>
-            <Typography>Form</Typography>
-            <ul className={classes.list}>
+            </List>
+
+            <Typography className={classes.left} variant='h6'>
+                Form
+            </Typography>
+            <List className={classes.list}>
                 {understandPointsRedux.form.map((bulletPoint) => (
-                    <Typography>
-                        <li key={uuidv4()}>{bulletPoint}</li>
-                    </Typography>
+                    <ListItem divider key={uuidv4()}>
+                        <ListItemText primary={`${bulletPoint}`} />
+                    </ListItem>
                 ))}
-            </ul>
-            <Typography>Geography</Typography>
-            <ul className={classes.list}>
+            </List>
+
+            <Typography className={classes.left} variant='h6'>
+                Geography
+            </Typography>
+            <List className={classes.list}>
                 {understandPointsRedux.geography.map((bulletPoint) => (
-                    <Typography>
-                        <li key={uuidv4()}>{bulletPoint}</li>
-                    </Typography>
+                    <ListItem divider key={uuidv4()}>
+                        <ListItemText primary={`${bulletPoint}`} />
+                    </ListItem>
                 ))}
-            </ul>
-            <Typography>Status</Typography>
-            <ul className={classes.list}>
-                {understandPointsRedux.geography.map((bulletPoint) => (
-                    <Typography>
-                        <li key={uuidv4()}>{bulletPoint}</li>
-                    </Typography>
+            </List>
+
+            <Typography className={classes.left} variant='h6'>
+                Status
+            </Typography>
+            <List className={classes.list}>
+                {understandPointsRedux.status.map((bulletPoint) => (
+                    <ListItem divider key={uuidv4()}>
+                        <ListItemText primary={`${bulletPoint}`} />
+                    </ListItem>
                 ))}
-            </ul>
+            </List>
         </div>
     );
 };

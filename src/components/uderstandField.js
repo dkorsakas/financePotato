@@ -15,8 +15,15 @@ const useStyles = makeStyles((theme) => ({
     root: {
         margin: 20,
     },
+    textGoesLeftBold: {
+        textAlign: 'left',
+        fontWeight: 'bold',
+    },
+    textGoesLeft: {
+        textAlign: 'left',
+    },
 }));
-const UnderstandField = ({ understandType }) => {
+const UnderstandField = ({ understandType, notes }) => {
     let customerPointsRedux = useSelector(
         (state) => state.understand[understandType]
     );
@@ -49,14 +56,19 @@ const UnderstandField = ({ understandType }) => {
 
     return (
         <div>
-            <Typography>{`${understandType}`}</Typography>
+            <Typography className={classes.textGoesLeftBold}>{`${
+                understandType.charAt(0).toUpperCase() + understandType.slice(1)
+            }`}</Typography>
+            <Typography
+                className={classes.textGoesLeft}
+            >{`${notes}`}</Typography>
             {understandPoints.map((customerPoint, index) => (
                 <TextField
                     id={index}
                     margin='normal'
                     multiline
                     rows={3}
-                    placeholder='Write a bullet point about the companys customers'
+                    placeholder='Write a bullet point that will be shown in the report'
                     variant='outlined'
                     onChange={handleChange}
                     fullWidth={true}
@@ -70,7 +82,7 @@ const UnderstandField = ({ understandType }) => {
                 onClick={addNewTextField}
                 className={classes.root}
             >
-                Add New Customer Bullet Point
+                Add A New Bullet Point
             </Button>
         </div>
     );

@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         margin: 20,
     },
+    boldText: {
+        fontWeight: 'bold',
+    },
 }));
 
 const GoodFuturePage = () => {
@@ -22,11 +25,28 @@ const GoodFuturePage = () => {
             <Grid container spacing={3}>
                 <Grid item xs></Grid>
                 <Grid item xs={6}>
-                    <Typography>Understanding the business</Typography>
-                    <GoodFutureField understandType='breathAnalysis' />
-                    <GoodFutureField understandType='forcesAnalysis' />
-                    <GoodFutureField understandType='moatIdentification' />
-                    <GoodFutureField understandType='marketGrowth' />
+                    <Typography
+                        className={(classes.root, classes.boldText)}
+                        variant='h4'
+                    >
+                        Future Performance
+                    </Typography>
+                    <GoodFutureField
+                        understandType='breathAnalysis'
+                        notes='Who are the customers - organizations or consumers? Both? What percentages? What is the age, income, gender, area etc. - the more specfic the better'
+                    />
+                    <GoodFutureField
+                        understandType='forcesAnalysis'
+                        notes='Who are the customers - organizations or consumers? Both? What percentages? What is the age, income, gender, area etc. - the more specfic the better'
+                    />
+                    <GoodFutureField
+                        understandType='moatIdentification'
+                        notes='Who are the customers - organizations or consumers? Both? What percentages? What is the age, income, gender, area etc. - the more specfic the better'
+                    />
+                    <GoodFutureField
+                        understandType='marketGrowth'
+                        notes='Who are the customers - organizations or consumers? Both? What percentages? What is the age, income, gender, area etc. - the more specfic the better'
+                    />
                 </Grid>
                 <Grid item xs></Grid>
             </Grid>

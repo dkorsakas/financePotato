@@ -15,8 +15,15 @@ const useStyles = makeStyles((theme) => ({
     root: {
         margin: 20,
     },
+    textGoesLeftBold: {
+        textAlign: 'left',
+        fontWeight: 'bold',
+    },
+    textGoesLeft: {
+        textAlign: 'left',
+    },
 }));
-const GoodFutureField = ({ understandType }) => {
+const GoodFutureField = ({ understandType, notes }) => {
     let customerPointsRedux = useSelector(
         (state) => state.isItGoodFuture[understandType]
     );
@@ -47,16 +54,25 @@ const GoodFutureField = ({ understandType }) => {
         setUnderstandPointsReact(newCustomerPoints);
     };
 
+    let newSectionTitle =
+        understandType.charAt(0).toUpperCase() + understandType.slice(1);
+    newSectionTitle = newSectionTitle.match(/[A-Z][a-z]+|[0-9]+/g).join(' ');
+
     return (
         <div>
-            <Typography>{`${understandType}`}</Typography>
+            <Typography
+                className={classes.textGoesLeftBold}
+            >{`${newSectionTitle}`}</Typography>
+            <Typography
+                className={classes.textGoesLeft}
+            >{`${notes}`}</Typography>
             {understandPoints.map((customerPoint, index) => (
                 <TextField
                     id={index}
                     margin='normal'
                     multiline
                     rows={3}
-                    placeholder='Write a bullet point about the companys customers'
+                    placeholder='Write a bullet point that will be shown in the report'
                     variant='outlined'
                     onChange={handleChange}
                     fullWidth={true}
