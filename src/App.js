@@ -8,28 +8,32 @@ import homePage from './pages/homePage';
 import Navbar from './components/navbar';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from './theme';
 
 function App() {
     return (
         <div className='App'>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <Navbar />
-                    <Switch>
-                        <Route exact path='/' component={homePage} />
-                        <Route
-                            exact
-                            path='/understand'
-                            component={understandPage}
-                        />
-                        <Route exact path='/good' component={goodPage} />
-                        <Route
-                            path='/inexpensive'
-                            component={inexpensivePage}
-                        />
-                    </Switch>
-                </BrowserRouter>
-            </Provider>
+            <ThemeProvider theme={theme}>
+                <Provider store={store}>
+                    <BrowserRouter>
+                        <Navbar />
+                        <Switch>
+                            <Route exact path='/' component={homePage} />
+                            <Route
+                                exact
+                                path='/understand'
+                                component={understandPage}
+                            />
+                            <Route exact path='/good' component={goodPage} />
+                            <Route
+                                path='/inexpensive'
+                                component={inexpensivePage}
+                            />
+                        </Switch>
+                    </BrowserRouter>
+                </Provider>
+            </ThemeProvider>
         </div>
     );
 }

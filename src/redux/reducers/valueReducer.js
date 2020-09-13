@@ -3,7 +3,7 @@ import { SET_PRODUCTS } from '../types';
 const initialState = {
     understand: {
         products: '',
-        customers: '',
+        customers: ['cusotmer bullet 1', 'bullet 2'],
         industry: '',
         form: '',
         geography: '',
@@ -19,13 +19,7 @@ export default function (state = initialState, action) {
         case SET_PRODUCTS:
             return {
                 ...state,
-                understand: {
-                    products: '',
-                    customers: action.payload,
-                    industry: '',
-                    form: '',
-                    geography: '',
-                },
+                understand: state.understand.customers.push(action.payload),
             };
         default:
             return state;
