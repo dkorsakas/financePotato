@@ -5,6 +5,7 @@ import goodPage from './pages/goodPage';
 import understandPage from './pages/understandPage';
 import inexpensivePage from './pages/inexpensivePage';
 import homePage from './pages/homePage';
+import ReportPage from './pages/reportPage';
 import Navbar from './components/navbar';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -30,6 +31,7 @@ function App() {
                                 path='/inexpensive'
                                 component={inexpensivePage}
                             />
+                            <Route path='/report' component={ReportPage} />
                         </Switch>
                     </BrowserRouter>
                 </Provider>

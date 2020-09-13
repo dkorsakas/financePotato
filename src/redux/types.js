@@ -1,1 +1,23 @@
-export const SET_PRODUCTS = 'SET_PRODUCTS';
+//Products
+export const ADD_PRODUCT_POINT = 'ADD_PRODUCT_POINT';
+export const SET_PRODUCT_POINTS = 'SET_PRODUCT_POINTS';
+
+//Customers
+export const ADD_CUSTOMER_POINT = 'ADD_CUSTOMER_POINT';
+export const SET_CUSTOMER_POINTS = 'SET_CUSTOMER_POINTS';
+
+//Industry
+export const ADD_INDUSTRY_POINT = 'ADD_INDUSTRY_POINT';
+export const SET_INDUSTRY_POINTS = 'SET_INDUSTRY_POINTS';
+
+//Form
+export const ADD_FROM_POINT = 'ADD_FROM_POINT';
+export const SET_FROM_POINTS = 'SET_FROM_POINTS';
+
+//Geography
+export const ADD_GEOGRAPHY_POINT = 'ADD_GEOGRAPHY_POINT';
+export const SET_GEOGRAPHY_POINTS = 'SET_GEOGRAPHY_POINTS';
+
+//Status
+export const ADD_STATUS_POINT = 'ADD_STATUS_POINT';
+export const SET_STATUS_POINTS = 'SET_STATUS_POINTS';

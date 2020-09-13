@@ -1,10 +1,10 @@
 import { createStore } from 'redux';
-import valueReducer from './reducers/valueReducer';
+import understandReducer from './reducers/understandReducer';
 
 const initialState = {};
 
 const store = createStore(
-    valueReducer,
+    understandReducer,
     initialState + window.__REDUX_DEVTOOLS_EXTENSION__ &&
         window.__REDUX_DEVTOOLS_EXTENSION__()
 );

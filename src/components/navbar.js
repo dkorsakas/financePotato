@@ -24,6 +24,9 @@ const navbar = () => {
                     <Button color='inherit' component={Link} to='/inexpensive'>
                         Is it inexpensive?
                     </Button>
+                    <Button color='inherit' component={Link} to='/report'>
+                        Report
+                    </Button>
                 </Toolbar>
             </AppBar>
         </div>
