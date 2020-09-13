@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { setCustomers, setCustomerPoints } from '../redux/actions/valueActions';
+import {
+    addUnderstandPoint,
+    setUnderstandPoints,
+} from '../redux/actions/valueActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 //Material UI
@@ -13,36 +16,41 @@ const useStyles = makeStyles((theme) => ({
         margin: 20,
     },
 }));
-const CustomersUnderstand = () => {
+const UnderstandField = ({ understandType }) => {
     let customerPointsRedux = useSelector(
-        (state) => state.understand.customers
+        (state) => state.understand[understandType]
     );
     const dispatch = useDispatch();
 
-    const [customerPoints, setCustomerPointsReact] = useState(
+    const [understandPoints, setUnderstandPointsReact] = useState(
         customerPointsRedux
     );
 
     const classes = useStyles();
 
     const handleChange = (event) => {
-        let newCustomerPoints = customerPoints;
+        let newCustomerPoints = understandPoints;
         newCustomerPoints[event.target.id] = event.target.value;
-        setCustomerPointsReact(newCustomerPoints);
-        dispatch(setCustomerPoints(customerPoints));
+        setUnderstandPointsReact(newCustomerPoints);
+        dispatch(setUnderstandPoints({ understandPoints, understandType }));
     };
 
     const addNewTextField = (event) => {
-        dispatch(setCustomers(''));
-        let newCustomerPoints = customerPoints;
+        dispatch(
+            addUnderstandPoint({
+                understandPoint: '',
+                understandType: understandType,
+            })
+        );
+        let newCustomerPoints = understandPoints;
         newCustomerPoints.push('');
-        setCustomerPointsReact(newCustomerPoints);
+        setUnderstandPointsReact(newCustomerPoints);
     };
 
     return (
         <div>
-            <Typography>Customers</Typography>
-            {customerPoints.map((customerPoint, index) => (
+            <Typography>{`${understandType}`}</Typography>
+            {understandPoints.map((customerPoint, index) => (
                 <TextField
                     id={index}
                     margin='normal'
@@ -52,7 +60,7 @@ const CustomersUnderstand = () => {
                     variant='outlined'
                     onChange={handleChange}
                     fullWidth={true}
-                    defaultValue={customerPoints[index]}
+                    defaultValue={understandPoints[index]}
                 />
             ))}
 
@@ -68,4 +76,4 @@ const CustomersUnderstand = () => {
     );
 };
 
-export default CustomersUnderstand;
+export default UnderstandField;

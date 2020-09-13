@@ -18,8 +18,11 @@ const navbar = () => {
                     <Button color='inherit' component={Link} to='/understand'>
                         Do I understand it?
                     </Button>
-                    <Button color='inherit' component={Link} to='/good'>
-                        Is it good?
+                    <Button color='inherit' component={Link} to='/goodpast'>
+                        Is it good? - Past
+                    </Button>
+                    <Button color='inherit' component={Link} to='/goodfuture'>
+                        Is it good? - Future
                     </Button>
                     <Button color='inherit' component={Link} to='/inexpensive'>
                         Is it inexpensive?

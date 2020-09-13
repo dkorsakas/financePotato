@@ -1,12 +1,8 @@
 import {
-    ADD_CUSTOMER_POINT,
-    SET_CUSTOMER_POINTS,
-    ADD_PRODUCT_POINT,
-    SET_PRODUCT_POINTS,
-    ADD_INDUSTRY_POINT,
-    SET_INDUSTRY_POINTS,
-    ADD_FROM_POINT,
-    SET_FROM_POINTS,
+    ADD_UNDERSTAND_POINT,
+    SET_UNDERSTAND_POINTS,
+    SET_GOOD_FUTURE_POINTS,
+    ADD_GOOD_FUTURE_POINT,
 } from '../types';
 
 const initialState = {
@@ -16,28 +12,60 @@ const initialState = {
         industry: [''],
         form: [''],
         geography: [''],
+        status: [''],
     },
-    isItgood: {
+    isItGoodPast: {
         operatingIncome: 53,
         revenue: 1234,
+    },
+    isItGoodFuture: {
+        breathAnalysis: ['customers', 'supliers'],
+        forcesAnalysis: ['customers', 'supliers', 'substitues', 'newentrants'],
+        moatIdentification: ['government'],
+        marketGrowth: [''],
     },
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case SET_CUSTOMER_POINTS:
-            return {
-                ...state,
-                understand: {
-                    customers: action.payload,
-                },
-            };
-        case ADD_CUSTOMER_POINT:
+        case SET_UNDERSTAND_POINTS:
             return {
                 ...state,
                 understand: {
                     ...state.understand,
-                    customers: [...state.understand.customers, action.payload],
+                    [action.payload.understandType]:
+                        action.payload.understandPoints,
+                },
+            };
+        case ADD_UNDERSTAND_POINT:
+            return {
+                ...state,
+                understand: {
+                    ...state.understand,
+                    [action.payload.understandType]: [
+                        ...state.understand[action.payload.understandType],
+                        action.payload.understadPoint,
+                    ],
+                },
+            };
+        case SET_GOOD_FUTURE_POINTS:
+            return {
+                ...state,
+                isItGoodFuture: {
+                    ...state.isItGoodFuture,
+                    [action.payload.understandType]:
+                        action.payload.understandPoints,
+                },
+            };
+        case ADD_GOOD_FUTURE_POINT:
+            return {
+                ...state,
+                isItGoodFuture: {
+                    ...state.isItGoodFuture,
+                    [action.payload.understandType]: [
+                        ...state.isItGoodFuture[action.payload.understandType],
+                        action.payload.understadPoint,
+                    ],
                 },
             };
         default:

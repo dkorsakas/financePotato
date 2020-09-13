@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import UnderstandReport from '../components/understandReport';
 
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,10 +15,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ReportPage = () => {
-    let customerPointsRedux = useSelector(
-        (state) => state.understand.customers
-    );
-
     const classes = useStyles();
 
     return (
@@ -27,14 +23,7 @@ const ReportPage = () => {
                 <Grid item xs></Grid>
 
                 <Grid item xs={6}>
-                    <Typography>This is the report page</Typography>
-                    <ul className={classes.list}>
-                        {customerPointsRedux.map((bulletPoint) => (
-                            <Typography>
-                                <li key={uuidv4()}>{bulletPoint}</li>
-                            </Typography>
-                        ))}
-                    </ul>
+                    <UnderstandReport />
                 </Grid>
                 <Grid item xs></Grid>
             </Grid>

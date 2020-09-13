@@ -1,6 +1,6 @@
 import React from 'react';
 
-import UnderstandField from '../components/uderstandField';
+import GoodFutureField from '../components/goodFutureField';
 
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
         margin: 20,
     },
 }));
-const UnderstandPage = () => {
+
+const GoodFuturePage = () => {
     const classes = useStyles();
 
     return (
@@ -22,12 +23,10 @@ const UnderstandPage = () => {
                 <Grid item xs></Grid>
                 <Grid item xs={6}>
                     <Typography>Understanding the business</Typography>
-                    <UnderstandField understandType='products' />
-                    <UnderstandField understandType='customers' />
-                    <UnderstandField understandType='industry' />
-                    <UnderstandField understandType='form' />
-                    <UnderstandField understandType='geography' />
-                    <UnderstandField understandType='status' />
+                    <GoodFutureField understandType='breathAnalysis' />
+                    <GoodFutureField understandType='forcesAnalysis' />
+                    <GoodFutureField understandType='moatIdentification' />
+                    <GoodFutureField understandType='marketGrowth' />
                 </Grid>
                 <Grid item xs></Grid>
             </Grid>
@@ -35,4 +34,4 @@ const UnderstandPage = () => {
     );
 };
 
-export default UnderstandPage;
+export default GoodFuturePage;

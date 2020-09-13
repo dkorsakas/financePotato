@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import goodPage from './pages/goodPage';
+import GoodPastPage from './pages/goodPastPage';
+import GoodFuturePage from './pages/goodFuturePage';
 import understandPage from './pages/understandPage';
 import inexpensivePage from './pages/inexpensivePage';
 import homePage from './pages/homePage';
@@ -26,7 +27,16 @@ function App() {
                                 path='/understand'
                                 component={understandPage}
                             />
-                            <Route exact path='/good' component={goodPage} />
+                            <Route
+                                exact
+                                path='/goodpast'
+                                component={GoodPastPage}
+                            />
+                            <Route
+                                exact
+                                path='/goodfuture'
+                                component={GoodFuturePage}
+                            />
                             <Route
                                 path='/inexpensive'
                                 component={inexpensivePage}
