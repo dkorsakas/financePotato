@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        margin: 20,
+        margin: 30,
     },
     boldText: {
         fontWeight: 'bold',

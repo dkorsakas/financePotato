@@ -5,6 +5,7 @@ import {
     ADD_GOOD_FUTURE_POINT,
     SET_GOOD_PAST_METRIC,
     SET_GOOD_PAST_METRIC_YEARS,
+    SET_BASE_YEAR,
 } from '../types';
 
 const initialState = {
@@ -18,8 +19,8 @@ const initialState = {
     },
     isItGoodPast: {
         baseYear: 2019,
+        years: [],
         operatingIncome: 53,
-        operatingIncomeYears: [],
         operatingIncomeNotes: '',
         revenue: 1234,
     },
@@ -96,6 +97,15 @@ export default function (state = initialState, action) {
                         action.payload.goodPastYears,
                 },
             };
+        case SET_BASE_YEAR:
+            return {
+                ...state,
+                isItGoodPast: {
+                    ...state.isItGoodPast,
+                    baseYear: action.payload,
+                },
+            };
+
         default:
             return state;
     }

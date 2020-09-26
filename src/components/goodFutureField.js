@@ -86,7 +86,7 @@ const GoodFutureField = ({ understandType, notes }) => {
                 onClick={addNewTextField}
                 className={classes.root}
             >
-                Add New Customer Bullet Point
+                Add New Bullet Point
             </Button>
         </div>
     );

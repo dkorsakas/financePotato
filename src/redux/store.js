@@ -1,34 +1,34 @@
 import { combineReducers, createStore } from 'redux';
 import understandReducer from './reducers/understandReducer';
 
-function saveToLocalStorage(state) {
-    try {
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem('state', serializedState);
-    } catch (e) {
-        console.log(e);
-    }
-}
+// function saveToLocalStorage(state) {
+//     try {
+//         const serializedState = JSON.stringify(state);
+//         localStorage.setItem('state', serializedState);
+//     } catch (e) {
+//         console.log(e);
+//     }
+// }
 
-function loadFromLocalStorage() {
-    try {
-        const serializedState = localStorage.getItem('state');
-        if (serializedState === null) return undefined;
-        return JSON.parse(serializedState);
-    } catch (e) {
-        console.log(e);
-        return undefined;
-    }
-}
-const persistedState = loadFromLocalStorage();
+// function loadFromLocalStorage() {
+//     try {
+//         const serializedState = localStorage.getItem('state');
+//         if (serializedState === null) return undefined;
+//         return JSON.parse(serializedState);
+//     } catch (e) {
+//         console.log(e);
+//         return undefined;
+//     }
+// }
+//const persistedState = loadFromLocalStorage();
 
 const store = createStore(
     understandReducer,
-    persistedState,
+    //persistedState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-store.subscribe(() => saveToLocalStorage(store.getState()));
+//store.subscribe(() => saveToLocalStorage(store.getState()));
 
 //tutorials regarding saving redux state
 //https://www.youtube.com/watch?v=o_Ni4Cqh4XA&ab_channel=devmentorlive
