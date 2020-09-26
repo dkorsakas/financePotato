@@ -35,9 +35,17 @@ const GoodPastField = ({ goodPastType, notesType }) => {
     );
     const goodPastTypeYears = `${goodPastType}Years`;
 
+    let goodPastYearsRedux = useSelector(
+        (state) => state.isItGoodPast[goodPastTypeYears]
+    );
+
     let baseYearRedux = useSelector((state) => state.isItGoodPast.baseYear);
 
-    let years = [baseYearRedux];
+    let goodPastYears = goodPastYearsRedux;
+
+    if (goodPastYears.length <= 0) {
+        goodPastYears = [baseYearRedux];
+    }
 
     const handleChange = (event) => {
         goodPastMetricRedux = parseInt(event.target.value);
@@ -46,10 +54,12 @@ const GoodPastField = ({ goodPastType, notesType }) => {
     };
 
     const addOneMoreYear = () => {
-        years.push(years[years.length - 1] - 1);
+        console.log(goodPastYears);
+        console.log(goodPastYears[goodPastYears.length - 1] - 1);
+        goodPastYears.push(goodPastYears[goodPastYears.length - 1] - 1);
         console.log('clicked');
-        console.log(years);
-        dispatch(setGoodPastMetricYears({ years, goodPastTypeYears }));
+        console.log(goodPastYears);
+        dispatch(setGoodPastMetricYears({ goodPastYears, goodPastTypeYears }));
     };
 
     return (
@@ -70,9 +80,10 @@ const GoodPastField = ({ goodPastType, notesType }) => {
                 defaultValue={goodPastMetricRedux}
                 type='number'
             />
-            {years.map((year) => (
+            {goodPastYears.map((year) => (
                 <TextField
                     id={goodPastType + year}
+                    key={goodPastType + year}
                     margin='normal'
                     rows={3}
                     placeholder='Metric Goes here'

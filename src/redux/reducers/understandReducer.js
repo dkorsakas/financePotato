@@ -92,7 +92,8 @@ export default function (state = initialState, action) {
                 ...state,
                 isItGoodPast: {
                     ...state.isItGoodPast,
-                    [action.payload.goodPastTypeYears]: action.payload.years,
+                    [action.payload.goodPastTypeYears]:
+                        action.payload.goodPastYears,
                 },
             };
         default:
