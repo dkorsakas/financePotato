@@ -1,6 +1,7 @@
 import React from 'react';
 
 import GoodPastFieldYear from '../components/goodPastFieldYear';
+import GoodPastField from '../components/goodPastField';
 
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -32,6 +33,7 @@ const GoodPastPage = () => {
                         Past Performance
                     </Typography>
                     <GoodPastFieldYear />
+                    <GoodPastField goodPastType='operatingIncome' />
                 </Grid>
                 <Grid item xs></Grid>
             </Grid>

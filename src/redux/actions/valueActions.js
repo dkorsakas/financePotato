@@ -6,6 +6,7 @@ import {
     SET_GOOD_PAST_METRIC,
     SET_GOOD_PAST_METRIC_YEARS,
     SET_BASE_YEAR,
+    UPDATE_NOTES,
 } from '../types';
 
 export const addUnderstandPoint = (point) => ({
@@ -41,4 +42,9 @@ export const setGoodPastMetricYears = (years) => ({
 export const setBaseYear = (year) => ({
     type: SET_BASE_YEAR,
     payload: year,
+});
+
+export const updateNotes = (notes) => ({
+    type: UPDATE_NOTES,
+    payload: notes,
 });

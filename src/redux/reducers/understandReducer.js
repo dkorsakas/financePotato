@@ -6,6 +6,7 @@ import {
     SET_GOOD_PAST_METRIC,
     SET_GOOD_PAST_METRIC_YEARS,
     SET_BASE_YEAR,
+    UPDATE_NOTES,
 } from '../types';
 
 const initialState = {
@@ -19,10 +20,21 @@ const initialState = {
     },
     isItGoodPast: {
         baseYear: 2019,
-        years: [],
-        operatingIncome: 53,
+        years: [0],
+        operatingIncome: [0],
         operatingIncomeNotes: '',
-        revenue: 1234,
+        cashAndcashEquivalents: [0],
+        cashAndcashEquivalentsNotes: '',
+        totalAssets: [0],
+        totalAssetsNotes: '',
+        nonInterstBearingCurrentLiabilities: [0],
+        nonInterstBearingCurrentLiabilitiesNotes: '',
+        cashFlowFromOperations: [0],
+        cashFlowFromOperationsNotes: '',
+        maintainenceCapitalExpenditures: [0],
+        maintainenceCapitalExpendituresNotes: '',
+        numberOfSharesDiluted: [0],
+        numberOfSharesDilutedNotes: '',
     },
     isItGoodFuture: {
         breathAnalysis: ['Customers:', 'Suppliers:'],
@@ -85,7 +97,7 @@ export default function (state = initialState, action) {
                 isItGoodPast: {
                     ...state.isItGoodPast,
                     [action.payload.goodPastType]:
-                        action.payload.goodPastMetricRedux,
+                        action.payload.goodPastMetric,
                 },
             };
         case SET_GOOD_PAST_METRIC_YEARS:
@@ -103,6 +115,14 @@ export default function (state = initialState, action) {
                 isItGoodPast: {
                     ...state.isItGoodPast,
                     baseYear: action.payload,
+                },
+            };
+        case UPDATE_NOTES:
+            return {
+                ...state,
+                isItGoodPast: {
+                    ...state.isItGoodPast,
+                    [action.payload.type]: action.payload.newNotes,
                 },
             };
 

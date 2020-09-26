@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import {
     addUnderstandPoint,
     setUnderstandPoints,
@@ -65,6 +66,7 @@ const UnderstandField = ({ understandType, notes }) => {
             {understandPoints.map((customerPoint, index) => (
                 <TextField
                     id={index}
+                    key={uuidv4()}
                     margin='normal'
                     multiline
                     rows={3}
