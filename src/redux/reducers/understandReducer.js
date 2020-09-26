@@ -3,6 +3,8 @@ import {
     SET_UNDERSTAND_POINTS,
     SET_GOOD_FUTURE_POINTS,
     ADD_GOOD_FUTURE_POINT,
+    SET_GOOD_PAST_METRIC,
+    SET_GOOD_PAST_METRIC_YEARS,
 } from '../types';
 
 const initialState = {
@@ -15,7 +17,10 @@ const initialState = {
         status: [''],
     },
     isItGoodPast: {
+        baseYear: 2019,
         operatingIncome: 53,
+        operatingIncomeYears: [],
+        operatingIncomeNotes: '',
         revenue: 1234,
     },
     isItGoodFuture: {
@@ -71,6 +76,23 @@ export default function (state = initialState, action) {
                         ...state.isItGoodFuture[action.payload.understandType],
                         action.payload.understadPoint,
                     ],
+                },
+            };
+        case SET_GOOD_PAST_METRIC:
+            return {
+                ...state,
+                isItGoodPast: {
+                    ...state.isItGoodPast,
+                    [action.payload.goodPastType]:
+                        action.payload.goodPastMetricRedux,
+                },
+            };
+        case SET_GOOD_PAST_METRIC_YEARS:
+            return {
+                ...state,
+                isItGoodPast: {
+                    ...state.isItGoodPast,
+                    [action.payload.goodPastTypeYears]: action.payload.years,
                 },
             };
         default:
