@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+//import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,19 +22,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const UnderstandReport = () => {
-    let understandPointsRedux = useSelector((state) => state.understand);
+const GoodFutureReport = () => {
+    let goodFuturePoints = useSelector((state) => state.isItGoodFuture);
 
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <Typography variant='h4'>Do i understand it?</Typography>
+            <Typography variant='h4'>Is it good (future) ?</Typography>
             <Typography className={classes.left} variant='h6'>
-                Products
+                Breath Analysis
             </Typography>
             <List className={classes.list}>
-                {understandPointsRedux.products.map((bulletPoint) => (
+                {goodFuturePoints.breathAnalysis.map((bulletPoint) => (
                     <ListItem divider key={uuidv4()}>
                         <ListItemText primary={`${bulletPoint}`} />
                     </ListItem>
@@ -42,10 +42,10 @@ const UnderstandReport = () => {
             </List>
 
             <Typography className={classes.left} variant='h6'>
-                Customers
+                Forces Analysis
             </Typography>
             <List className={classes.list}>
-                {understandPointsRedux.customers.map((bulletPoint) => (
+                {goodFuturePoints.forcesAnalysis.map((bulletPoint) => (
                     <ListItem divider key={uuidv4()}>
                         <ListItemText primary={`${bulletPoint}`} />
                     </ListItem>
@@ -53,10 +53,10 @@ const UnderstandReport = () => {
             </List>
 
             <Typography className={classes.left} variant='h6'>
-                Industry
+                Moat Identification
             </Typography>
             <List className={classes.list}>
-                {understandPointsRedux.industry.map((bulletPoint) => (
+                {goodFuturePoints.moatIdentification.map((bulletPoint) => (
                     <ListItem divider key={uuidv4()}>
                         <ListItemText primary={`${bulletPoint}`} />
                     </ListItem>
@@ -64,32 +64,10 @@ const UnderstandReport = () => {
             </List>
 
             <Typography className={classes.left} variant='h6'>
-                Form
+                Market Growth
             </Typography>
             <List className={classes.list}>
-                {understandPointsRedux.form.map((bulletPoint) => (
-                    <ListItem divider key={uuidv4()}>
-                        <ListItemText primary={`${bulletPoint}`} />
-                    </ListItem>
-                ))}
-            </List>
-
-            <Typography className={classes.left} variant='h6'>
-                Geography
-            </Typography>
-            <List className={classes.list}>
-                {understandPointsRedux.geography.map((bulletPoint) => (
-                    <ListItem divider key={uuidv4()}>
-                        <ListItemText primary={`${bulletPoint}`} />
-                    </ListItem>
-                ))}
-            </List>
-
-            <Typography className={classes.left} variant='h6'>
-                Status
-            </Typography>
-            <List className={classes.list}>
-                {understandPointsRedux.status.map((bulletPoint) => (
+                {goodFuturePoints.marketGrowth.map((bulletPoint) => (
                     <ListItem divider key={uuidv4()}>
                         <ListItemText primary={`${bulletPoint}`} />
                     </ListItem>
@@ -99,4 +77,4 @@ const UnderstandReport = () => {
     );
 };
 
-export default UnderstandReport;
+export default GoodFutureReport;

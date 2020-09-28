@@ -2,6 +2,8 @@ import React from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 import UnderstandReport from '../components/understandReport';
+import GoodFutureReport from '../components/goodFutureReport';
+import GoodPastReport from '../components/goodPastReport';
 
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,6 +26,8 @@ const ReportPage = () => {
 
                 <Grid item xs={6}>
                     <UnderstandReport />
+                    <GoodPastReport />
+                    <GoodFutureReport />
                 </Grid>
                 <Grid item xs></Grid>
             </Grid>

@@ -34,6 +34,12 @@ const GoodPastPage = () => {
                     </Typography>
                     <GoodPastFieldYear />
                     <GoodPastField goodPastType='operatingIncome' />
+                    <GoodPastField goodPastType='cashAndcashEquivalents' />
+                    <GoodPastField goodPastType='totalAssets' />
+                    <GoodPastField goodPastType='nonInterestBearingCurrentLiabilities' />
+                    <GoodPastField goodPastType='cashFlowFromOperations' />
+                    <GoodPastField goodPastType='maintainenceCapitalExpenditures' />
+                    <GoodPastField goodPastType='numberOfSharesDiluted' />
                 </Grid>
                 <Grid item xs></Grid>
             </Grid>

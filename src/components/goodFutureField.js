@@ -18,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
     textGoesLeftBold: {
         textAlign: 'left',
         fontWeight: 'bold',
+        marginTop: 20,
+        marginBottom: 20,
     },
     textGoesLeft: {
         textAlign: 'left',

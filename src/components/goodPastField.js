@@ -15,6 +15,17 @@ const useStyles = makeStyles((theme) => ({
     textGoesLeftBold: {
         textAlign: 'left',
         fontWeight: 'bold',
+        marginTop: 20,
+        marginBottom: 20,
+    },
+    addSomeSpaceHorizontal: {
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    oneAfterAnother: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
     },
     textGoesLeft: {
         textAlign: 'left',
@@ -50,7 +61,12 @@ const GoodPastField = ({ goodPastType }) => {
     }
 
     const handleChange = (event) => {
-        goodPastMetric[event.target.id] = parseInt(event.target.value);
+        if (event.target.value === '') {
+            goodPastMetric[event.target.id] = 0;
+        } else {
+            goodPastMetric[event.target.id] = parseInt(event.target.value);
+        }
+
         console.log(goodPastMetric);
         dispatch(setGoodPastMetric({ goodPastMetric, goodPastType }));
     };
@@ -59,28 +75,36 @@ const GoodPastField = ({ goodPastType }) => {
         dispatch(updateNotes({ newNotes, type: goodPastType + 'Notes' }));
     };
 
+    let title = goodPastType.charAt(0).toUpperCase() + goodPastType.slice(1);
+    title = title.match(/[A-Z][a-z]+|[0-9]+/g).join(' ');
+
     return (
         <div>
             <Typography
+                variant='h5'
                 className={classes.textGoesLeftBold}
-            >{`${goodPastType}`}</Typography>
+            >{`${title}`}</Typography>
 
             {goodPastMetric.map((metric, index) => (
-                <TextField
-                    id={index}
-                    key={uuidv4()}
-                    margin='normal'
-                    type='number'
-                    rows={3}
-                    variant='outlined'
-                    onChange={handleChange}
-                    fullWidth={true}
-                    defaultValue={goodPastMetric[index]}
-                />
+                <div key={uuidv4()} className={classes.oneAfterAnother}>
+                    <Typography className={classes.addSomeSpaceHorizontal}>
+                        Year {goodPastYears[index]}
+                    </Typography>
+                    <TextField
+                        className={classes.addSomeSpaceHorizontal}
+                        id={index}
+                        key={uuidv4()}
+                        margin='normal'
+                        type='number'
+                        variant='outlined'
+                        onChange={handleChange}
+                        defaultValue={goodPastMetric[index]}
+                    />
+                </div>
             ))}
             <Typography
                 className={classes.textGoesLeftBold}
-            >{`Notes on ${goodPastType}`}</Typography>
+            >{`Notes on ${title}`}</Typography>
             <TextField
                 margin='normal'
                 multiline

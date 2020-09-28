@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
     textGoesLeftBold: {
         textAlign: 'left',
         fontWeight: 'bold',
-        margin: 20,
+        marginTop: 20,
+        marginBottom: 20,
     },
     textGoesLeft: {
         textAlign: 'left',
@@ -86,6 +87,9 @@ const GoodPastYearField = () => {
             <Typography variant='h5' className={classes.textGoesLeftBold}>
                 Choose years
             </Typography>
+            <Typography className={classes.textGoesLeftBold}>
+                Latest (base) year:
+            </Typography>
             <TextField
                 margin='normal'
                 rows={3}
@@ -100,7 +104,7 @@ const GoodPastYearField = () => {
             </Typography>
             {goodPastYears.map((year) => (
                 <Typography className={classes.textGoesLeftBold} key={uuidv4()}>
-                    {year}
+                    Year: {year}
                 </Typography>
             ))}
 
