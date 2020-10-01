@@ -38,9 +38,12 @@ const GoodPastField = ({ goodPastType }) => {
     let goodPastMetricRedux = useSelector(
         (state) => state.isItGoodPast[goodPastType]
     );
+
     let goodPastNotesRedux = useSelector(
         (state) => state.isItGoodPast[goodPastType + 'Notes']
     );
+
+    console.log(goodPastMetricRedux, goodPastNotesRedux);
 
     let goodPastYears = useSelector((state) => state.isItGoodPast.years);
     let goodPastMetric = goodPastMetricRedux;
@@ -48,14 +51,11 @@ const GoodPastField = ({ goodPastType }) => {
 
     if (goodPastYears.length !== goodPastMetric.length) {
         if (goodPastYears.length > goodPastMetric.length) {
-            console.log('hey');
             goodPastMetric.push(0);
             console.log(goodPastMetric);
         } else if (goodPastYears.length < goodPastMetric.length) {
             goodPastMetric.pop();
             goodPastMetric = [...goodPastMetric];
-
-            console.log('heyLess');
         }
         dispatch(setGoodPastMetric({ goodPastMetric, goodPastType }));
     }

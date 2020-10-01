@@ -34,7 +34,7 @@ const GoodPastPage = () => {
                     </Typography>
                     <GoodPastFieldYear />
                     <GoodPastField goodPastType='operatingIncome' />
-                    <GoodPastField goodPastType='cashAndcashEquivalents' />
+                    <GoodPastField goodPastType='cashAndCashEquivalents' />
                     <GoodPastField goodPastType='totalAssets' />
                     <GoodPastField goodPastType='nonInterestBearingCurrentLiabilities' />
                     <GoodPastField goodPastType='cashFlowFromOperations' />
