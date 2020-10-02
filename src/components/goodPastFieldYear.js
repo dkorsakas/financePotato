@@ -22,6 +22,12 @@ const useStyles = makeStyles((theme) => ({
         marginTop: 20,
         marginBottom: 20,
     },
+    textGoesCenterBold: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginTop: 20,
+        marginBottom: 20,
+    },
     textGoesLeft: {
         textAlign: 'left',
     },
@@ -84,7 +90,7 @@ const GoodPastYearField = () => {
 
     return (
         <div>
-            <Typography variant='h5' className={classes.textGoesLeftBold}>
+            <Typography variant='h5' className={classes.textGoesCenterBold}>
                 Choose years
             </Typography>
             <Typography className={classes.textGoesLeftBold}>

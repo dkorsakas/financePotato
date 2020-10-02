@@ -51,5 +51,6 @@ function App() {
 }
 
 //git push -u origin master
+//var canDrive = age > 16 ? 'yes' : 'no';
 
 export default App;

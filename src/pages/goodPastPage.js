@@ -16,6 +16,12 @@ const useStyles = makeStyles((theme) => ({
     boldText: {
         fontWeight: 'bold',
     },
+    textGoesCenterBold: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginTop: 20,
+        marginBottom: 20,
+    },
 }));
 
 const GoodPastPage = () => {
@@ -32,14 +38,50 @@ const GoodPastPage = () => {
                     >
                         Past Performance
                     </Typography>
+
                     <GoodPastFieldYear />
+
+                    <Typography
+                        variant='h5'
+                        className={classes.textGoesCenterBold}
+                    >
+                        Income Statement
+                    </Typography>
+
                     <GoodPastField goodPastType='operatingIncome' />
+                    <GoodPastField goodPastType='interestExpense' />
+                    <Typography
+                        variant='h5'
+                        className={classes.textGoesCenterBold}
+                    >
+                        Balance sheet
+                    </Typography>
+
+                    <GoodPastField goodPastType='intangibleAssets' />
                     <GoodPastField goodPastType='cashAndCashEquivalents' />
                     <GoodPastField goodPastType='totalAssets' />
+                    <GoodPastField goodPastType='totalEquity' />
                     <GoodPastField goodPastType='nonInterestBearingCurrentLiabilities' />
+                    <GoodPastField goodPastType='debt' />
+                    <GoodPastField goodPastType='totalLiabilities' />
+                    <Typography
+                        variant='h5'
+                        className={classes.textGoesCenterBold}
+                    >
+                        Statement of Cashflow
+                    </Typography>
+
                     <GoodPastField goodPastType='cashFlowFromOperations' />
                     <GoodPastField goodPastType='maintainenceCapitalExpenditures' />
+
+                    <Typography
+                        variant='h5'
+                        className={classes.textGoesCenterBold}
+                    >
+                        Other
+                    </Typography>
                     <GoodPastField goodPastType='numberOfSharesDiluted' />
+                    <GoodPastField goodPastType='infilation' />
                 </Grid>
                 <Grid item xs></Grid>
             </Grid>

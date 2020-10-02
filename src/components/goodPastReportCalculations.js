@@ -11,21 +11,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 //import Divider from '@material-ui/core/Divider';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: 10,
-    },
-    spaceVertical: {
-        marginTop: 40,
-        marginBottom: 40,
     },
     left: {
         textAlign: 'left',
@@ -57,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     nothing: {},
 }));
 
-const GoodPastReport = () => {
+const GoodPastReportCalculations = () => {
     const pushSafe = (input, array) => {
         if (input !== undefined) {
             array.push(input);
@@ -144,19 +132,6 @@ const GoodPastReport = () => {
         for (let i = 0; i < years.length; i++) {
             rowData[years[i]] = metric[i];
 
-            if (
-                name.substring(0, 4) === 'ROCE' ||
-                name.substring(0, 4) === 'Grow' ||
-                name.substring(0, 4) === 'FCFR' ||
-                name.substring(0, 14) === 'Liabilities to' ||
-                name.substring(0, 7) === 'Debt to' ||
-                name.substring(0, 3) === 'Inf'
-            ) {
-                rowData[`${years[i]}sign}`] = '%';
-            } else {
-                rowData[`${years[i]}sign}`] = '';
-            }
-
             if (name.substring(0, 4) === 'ROCE' && metric[i] >= 20) {
                 rowData[`${years[i]}color}`] = 'veryGreen';
             } else if (name.substring(0, 4) === 'ROCE' && metric[i] >= 15) {
@@ -222,7 +197,6 @@ const GoodPastReport = () => {
 
             if (typeof metric[i] !== 'number' || isNaN(metric[i]) === true) {
                 rowData[`${years[i]}color}`] = 'nothing';
-                rowData[`${years[i]}sign}`] = '';
             }
         }
 
@@ -525,174 +499,252 @@ const GoodPastReport = () => {
     }
 
     // creating rows for the metrics table
-    const rows = [
-        makeIntoRow('ROCE', rocePresent, years),
-        makeIntoRow("ROCE (last year's capital employed)", rocePast, years),
-        makeIntoRow('ROCE (minus Cash)', roceCashPresent, years),
-        makeIntoRow(
-            "ROCE (minus cash & last year's capital employed)",
-            roceCashPast,
-            years
-        ),
-        makeIntoRow('FCFROCE', freeRocePresent, years),
-        makeIntoRow(
-            "FCFROCE (last year's capital employed)",
-            freeRocePast,
-            years
-        ),
-        makeIntoRow('FCFROCE (minus Cash)', freeRoceCashPresent, years),
-        makeIntoRow(
-            "FCFROCE (minus cash & last year's capital employed)",
-            freeRoceCashPast,
-            years
-        ),
-        makeIntoRow(
-            'Growth in Operating Income per Share',
-            growthShareOI,
-            years
-        ),
-        makeIntoRow('Growth in FCF per Share', growthShareFCF, years),
-        makeIntoRow(
-            'Growth in Book Value per Share',
-            growthShareBookValue,
-            years
-        ),
-        makeIntoRow(
-            'Growth in Tangible Book Value per Share',
-            growthShareTangibleBookValue,
-            years
-        ),
-        makeIntoRow(
-            'Liabilities to Equity Ratio',
-            liabilitiesToEquityRatio,
-            years
-        ),
-        makeIntoRow('Debt to Equity Ratio', debtToEquityRatio, years),
-        makeIntoRow('Interest Coverage Ratio', interestCoverageRatio, years),
-    ];
-
-    const rowsOther = [
-        makeIntoRow('Operating Income', operatingIncome, years),
-        makeIntoRow('Interest Expense', interestExpense, years),
-        makeIntoRow('FCF', freeCashFlow, years),
-        makeIntoRow('Cash Flow From Operations', cashFlowFromOperations, years),
-        makeIntoRow(
-            'Maintainence CAPEX',
-            maintainenceCapitalExpenditures,
-            years
-        ),
-        makeIntoRow('Cash and Cash Equivalents', cashAndCashEquivalents, years),
-        makeIntoRow('Cash and Cash Equivalents', cashAndCashEquivalents, years),
-        makeIntoRow(
-            'Non interest bearing current liabilities',
-            nonInterestBearingCurrentLiabilities,
-            years
-        ),
-        makeIntoRow(
-            'Capital Employed (Minus Cash)',
-            capitalEmployedCash,
-            years
-        ),
-        makeIntoRow('Total Assets', totalAssets, years),
-        makeIntoRow('Tangible Book Value', tangibleBookValue, years),
-        makeIntoRow('Total Equity', totalEquity, years),
-        makeIntoRow('Debt', debt, years),
-        makeIntoRow('Total Liabilities', totalLiabilities, years),
-        makeIntoRow('Fully diluted shares', numberOfSharesDiluted, years),
-        makeIntoRow('Infilation', infilation, years),
-    ];
 
     //  return
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <div className={classes.spaceVertical}>
-                <Typography variant='h4'>
-                    Is it good (past performance)?
-                </Typography>
-            </div>
-            <div className={classes.spaceVertical}>
-                <Typography className={classes.left} variant='h6'>
-                    Key metrics
-                </Typography>
-            </div>
-            <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label='simple table'>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Metric</TableCell>
-                            {years.map((bulletPoint, index) => (
-                                <TableCell align='right'>
-                                    {years[index]}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.name}>
-                                <TableCell component='th' scope='row'>
-                                    {row.name}
-                                </TableCell>
-                                {years.map((bulletPoint, index) => (
-                                    <TableCell
-                                        className={
-                                            classes[
-                                                row[`${years[index]}color}`]
-                                            ]
-                                        }
-                                        align='right'
-                                    >
-                                        {makeNumberNice(
-                                            row[years[index]],
-                                            row[`${years[index]}sign}`]
-                                        )}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <div className={classes.spaceVertical}>
-                <Typography className={classes.left} variant='h6'>
-                    Other Metrics
-                </Typography>
-            </div>
-            <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label='simple table'>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Metric</TableCell>
-                            {years.map((bulletPoint, index) => (
-                                <TableCell align='right'>
-                                    {years[index]}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rowsOther.map((row) => (
-                            <TableRow key={row.name}>
-                                <TableCell component='th' scope='row'>
-                                    {row.name}
-                                </TableCell>
-                                {years.map((bulletPoint, index) => (
-                                    <TableCell align='right'>
-                                        {makeNumberNice(
-                                            row[years[index]],
-                                            row[`${years[index]}sign}`]
-                                        )}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <Typography variant='h4' classNmae={classes.root}>
+                Calculations
+            </Typography>
+            <Typography className={classes.left} variant='h6'>
+                Capital Employed
+            </Typography>
+            <List className={classes.list}>
+                {capitalEmployed.map((bulletPoint, index) => (
+                    <div>
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${years[index]} Capital Employed Minus Cash: ${bulletPoint}`}</Typography>
+                                }
+                            />
+                        </ListItem>
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={`Calculation: ${capitalEmployedCalculation[index]}`}
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${years[index]} Capital Employed With Cash: ${capitalEmployedCash[index]}`}</Typography>
+                                }
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={`Calculation: ${capitalEmployedCashCalculation[index]}`}
+                            />
+                        </ListItem>
+                    </div>
+                ))}
+            </List>
+
+            <Typography className={classes.left} variant='h6'>
+                Return on Capital Employed
+            </Typography>
+            <List className={classes.list}>
+                {years.map((bulletPoint, index) => (
+                    <div>
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${years[index]} ROCE (minus cash): ${rocePresent[index]}%`}</Typography>
+                                }
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={`Calculation: ${rocePresentCalculation[index]}`}
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${years[index]} ROCE with Cash: ${roceCashPresent[index]}%`}</Typography>
+                                }
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={`Calculation: ${roceCashPresentCalculation[index]}`}
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${
+                                        years[index]
+                                    } ROCE (minus cash & using ${
+                                        years[index] - 1
+                                    } capital employed): ${
+                                        rocePast[index]
+                                    }%`}</Typography>
+                                }
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={`Calculation: ${rocePastCalculation[index]}`}
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${years[index]} ROCE (using ${
+                                        years[index] - 1
+                                    } capital employed): ${
+                                        roceCashPast[index]
+                                    }%`}</Typography>
+                                }
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={`Calculation: ${roceCashPastCalculation[index]}`}
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${years[index]} Average ROCE 
+                                : ${roceAverage[index]}%`}</Typography>
+                                }
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={`Calculation: ${roceAverageCalculation[index]}`}
+                            />
+                        </ListItem>
+                    </div>
+                ))}
+                <ListItem divider key={uuidv4()}>
+                    <ListItemText
+                        primary={
+                            <Typography
+                                className={classes.boldItemStyle}
+                            >{`Historical average ROCE
+                                : ${historicalRoceAverage}%`}</Typography>
+                        }
+                    />
+                </ListItem>
+
+                <ListItem divider key={uuidv4()}>
+                    <ListItemText
+                        primary={`Calculation: ${historicalRoceAverageCalculation}`}
+                    />
+                </ListItem>
+            </List>
+
+            <Typography className={classes.left} variant='h6'>
+                Free Cash Flow Return on Capital Employed
+            </Typography>
+            <List className={classes.list}>
+                {years.map((bulletPoint, index) => (
+                    <div>
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${years[index]} FCFROCE (minus cash): ${freeRocePresent[index]}%`}</Typography>
+                                }
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${years[index]} FCFROCE with Cash: ${freeRoceCashPresent[index]}%`}</Typography>
+                                }
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${
+                                        years[index]
+                                    } FCFROCE (minus cash & using ${
+                                        years[index] - 1
+                                    } capital employed): ${
+                                        freeRocePast[index]
+                                    }%`}</Typography>
+                                }
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${years[index]} FCFROCE (using ${
+                                        years[index] - 1
+                                    } capital employed): ${
+                                        freeRoceCashPast[index]
+                                    }%`}</Typography>
+                                }
+                            />
+                        </ListItem>
+
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText
+                                primary={
+                                    <Typography
+                                        className={classes.boldItemStyle}
+                                    >{`Year ${years[index]} Average FCFROCE 
+                            : ${freeRoceAverage[index]}%`}</Typography>
+                                }
+                            />
+                        </ListItem>
+                    </div>
+                ))}
+                <ListItem divider key={uuidv4()}>
+                    <ListItemText
+                        primary={
+                            <Typography
+                                className={classes.boldItemStyle}
+                            >{`Historical average FCFROCE
+                            : ${historicalFreeRoceAverage}%`}</Typography>
+                        }
+                    />
+                </ListItem>
+            </List>
         </div>
     );
 };
 
-export default GoodPastReport;
+export default GoodPastReportCalculations;

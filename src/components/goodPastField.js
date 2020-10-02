@@ -81,7 +81,7 @@ const GoodPastField = ({ goodPastType }) => {
     return (
         <div>
             <Typography
-                variant='h5'
+                variant='h6'
                 className={classes.textGoesLeftBold}
             >{`${title}`}</Typography>
 
