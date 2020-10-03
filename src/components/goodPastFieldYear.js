@@ -130,6 +130,10 @@ const GoodPastYearField = () => {
             >
                 Remove one year
             </Button>
+            <Typography>
+                Be careful with the years - it affects years for all of the
+                metrics
+            </Typography>
         </div>
     );
 };

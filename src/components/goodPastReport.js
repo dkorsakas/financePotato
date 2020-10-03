@@ -1,14 +1,12 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+
 //import Divider from '@material-ui/core/Divider';
 
 import Table from '@material-ui/core/Table';
@@ -68,12 +66,6 @@ const GoodPastReport = () => {
 
     let isItGoodPast = useSelector((state) => state.isItGoodPast);
 
-    // let years = isItGoodPast.years;
-    // // let operatingIncome = isItGoodPast.operatingIncome;
-    // let numberOfSharesDiluted = isItGoodPast.numberOfSharesDiluted;
-    // let totalEquity = isItGoodPast.totalEquity;
-    // let intangibleAssets = isItGoodPast.intangibleAssets;
-    // let totalAssets = isItGoodPast.totalAssets;
     let {
         maintainenceCapitalExpenditures,
         cashFlowFromOperations,
@@ -128,6 +120,7 @@ const GoodPastReport = () => {
     //helper functions
 
     const makeNumberNice = (number, sign) => {
+        console.log(number);
         let niceNumber = number.toLocaleString();
         if (sign) {
             niceNumber = niceNumber + sign;
@@ -330,12 +323,12 @@ const GoodPastReport = () => {
     let freeRoceCashPast = [];
     let freeRoceAverage = [];
 
-    let freeCashFlowCalculation = [];
-    let freeRocePresentCalculation = [];
-    let freeRocePastCalculation = [];
-    let freeRoceCashPresentCalculation = [];
-    let freeRoceCashPastCalculation = [];
-    let freeRoceAverageCalculation = [];
+    // let freeCashFlowCalculation = [];
+    // let freeRocePresentCalculation = [];
+    // let freeRocePastCalculation = [];
+    // let freeRoceCashPresentCalculation = [];
+    // let freeRoceCashPastCalculation = [];
+    // let freeRoceAverageCalculation = [];
 
     for (let i = 0; i < isItGoodPast.years.length; i++) {
         let freeCashFlowOne = roundNumber(

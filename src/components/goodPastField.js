@@ -64,7 +64,9 @@ const GoodPastField = ({ goodPastType }) => {
         if (event.target.value === '') {
             goodPastMetric[event.target.id] = 0;
         } else {
-            goodPastMetric[event.target.id] = parseInt(event.target.value);
+            goodPastMetric[event.target.id] = parseFloat(
+                event.target.value.split(',').join('.')
+            );
         }
 
         console.log(goodPastMetric);

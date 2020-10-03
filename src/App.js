@@ -6,6 +6,7 @@ import GoodFuturePage from './pages/goodFuturePage';
 import understandPage from './pages/understandPage';
 import inexpensivePage from './pages/inexpensivePage';
 import homePage from './pages/homePage';
+import shareholderPage from './pages/shareholderPage';
 import ReportPage from './pages/reportPage';
 import Navbar from './components/navbar';
 import { Provider } from 'react-redux';
@@ -36,6 +37,11 @@ function App() {
                                 exact
                                 path='/goodfuture'
                                 component={GoodFuturePage}
+                            />
+                            <Route
+                                exact
+                                path='/shareholder'
+                                component={shareholderPage}
                             />
                             <Route
                                 path='/inexpensive'

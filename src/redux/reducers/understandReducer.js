@@ -17,6 +17,10 @@ const initialState = {
         form: [''],
         geography: [''],
         status: [''],
+        compensationAndOwnership: [''],
+        relatedPartyTransactions: [''],
+        shareRepurchases: [''],
+        dividends: [''],
     },
     isItGoodPast: {
         baseYear: 2019,
@@ -47,6 +51,12 @@ const initialState = {
         debtNotes: 'Used  for caluclating interest coverage ratio',
         interestExpense: [0],
         interestExpenseNotes: 'Used  for caluclating interest coverage ratio',
+        currentSharesOutstanding: [0],
+        currentSharesOutstandingNotes: '',
+        currentSharePrice: [0],
+        currentSharePriceNotes: '',
+        preferredEquity: [0],
+        preferredEquityNotes: '',
     },
     isItGoodFuture: {
         breathAnalysis: ['Customers:', 'Suppliers:'],

@@ -21,19 +21,45 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const UnderstandReport = () => {
+const ShareholderReport = () => {
     let understandPointsRedux = useSelector((state) => state.understand);
 
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <Typography variant='h4'>Do i understand it?</Typography>
+            <Typography variant='h4'>Is it shareholder firendly?</Typography>
             <Typography className={classes.left} variant='h6'>
-                Products
+                Compensation & Ownership
             </Typography>
             <List className={classes.list}>
-                {understandPointsRedux.products.map((bulletPoint) => (
+                {understandPointsRedux.compensationAndOwnership.map(
+                    (bulletPoint) => (
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText primary={`${bulletPoint}`} />
+                        </ListItem>
+                    )
+                )}
+            </List>
+
+            <Typography className={classes.left} variant='h6'>
+                Related-party transactions
+            </Typography>
+            <List className={classes.list}>
+                {understandPointsRedux.relatedPartyTransactions.map(
+                    (bulletPoint) => (
+                        <ListItem divider key={uuidv4()}>
+                            <ListItemText primary={`${bulletPoint}`} />
+                        </ListItem>
+                    )
+                )}
+            </List>
+
+            <Typography className={classes.left} variant='h6'>
+                Share Repurchases
+            </Typography>
+            <List className={classes.list}>
+                {understandPointsRedux.shareRepurchases.map((bulletPoint) => (
                     <ListItem divider key={uuidv4()}>
                         <ListItemText primary={`${bulletPoint}`} />
                     </ListItem>
@@ -41,54 +67,10 @@ const UnderstandReport = () => {
             </List>
 
             <Typography className={classes.left} variant='h6'>
-                Customers
+                Dividends
             </Typography>
             <List className={classes.list}>
-                {understandPointsRedux.customers.map((bulletPoint) => (
-                    <ListItem divider key={uuidv4()}>
-                        <ListItemText primary={`${bulletPoint}`} />
-                    </ListItem>
-                ))}
-            </List>
-
-            <Typography className={classes.left} variant='h6'>
-                Industry
-            </Typography>
-            <List className={classes.list}>
-                {understandPointsRedux.industry.map((bulletPoint) => (
-                    <ListItem divider key={uuidv4()}>
-                        <ListItemText primary={`${bulletPoint}`} />
-                    </ListItem>
-                ))}
-            </List>
-
-            <Typography className={classes.left} variant='h6'>
-                Form
-            </Typography>
-            <List className={classes.list}>
-                {understandPointsRedux.form.map((bulletPoint) => (
-                    <ListItem divider key={uuidv4()}>
-                        <ListItemText primary={`${bulletPoint}`} />
-                    </ListItem>
-                ))}
-            </List>
-
-            <Typography className={classes.left} variant='h6'>
-                Geography
-            </Typography>
-            <List className={classes.list}>
-                {understandPointsRedux.geography.map((bulletPoint) => (
-                    <ListItem divider key={uuidv4()}>
-                        <ListItemText primary={`${bulletPoint}`} />
-                    </ListItem>
-                ))}
-            </List>
-
-            <Typography className={classes.left} variant='h6'>
-                Status
-            </Typography>
-            <List className={classes.list}>
-                {understandPointsRedux.status.map((bulletPoint) => (
+                {understandPointsRedux.shareRepurchases.map((bulletPoint) => (
                     <ListItem divider key={uuidv4()}>
                         <ListItemText primary={`${bulletPoint}`} />
                     </ListItem>
@@ -98,4 +80,4 @@ const UnderstandReport = () => {
     );
 };
 
-export default UnderstandReport;
+export default ShareholderReport;

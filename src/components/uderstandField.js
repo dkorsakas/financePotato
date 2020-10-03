@@ -19,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
     textGoesLeftBold: {
         textAlign: 'left',
         fontWeight: 'bold',
+        marginTop: 20,
+        marginBottom: 20,
     },
     textGoesLeft: {
         textAlign: 'left',
@@ -55,11 +57,15 @@ const UnderstandField = ({ understandType, notes }) => {
         setUnderstandPointsReact(newCustomerPoints);
     };
 
+    let newSectionTitle =
+        understandType.charAt(0).toUpperCase() + understandType.slice(1);
+    newSectionTitle = newSectionTitle.match(/[A-Z][a-z]+|[0-9]+/g).join(' ');
+
     return (
         <div>
-            <Typography className={classes.textGoesLeftBold}>{`${
-                understandType.charAt(0).toUpperCase() + understandType.slice(1)
-            }`}</Typography>
+            <Typography
+                className={classes.textGoesLeftBold}
+            >{`${newSectionTitle}`}</Typography>
             <Typography
                 className={classes.textGoesLeft}
             >{`${notes}`}</Typography>
