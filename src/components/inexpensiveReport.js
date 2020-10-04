@@ -145,21 +145,45 @@ const InexpensiveReport = () => {
 
             rowData[`${years[i]}sign}`] = '';
 
-            if (name.substring(0, 6) === 'MCAP/F' && metric[i] <= 6) {
+            if (
+                name.substring(0, 6) === 'MCAP/F' &&
+                metric[i] <= 6 &&
+                metric[i] > 0
+            ) {
                 rowData[`${years[i]}color}`] = 'veryGreen';
-            } else if (name.substring(0, 6) === 'MCAP/F' && metric[i] <= 8) {
+            } else if (
+                name.substring(0, 6) === 'MCAP/F' &&
+                metric[i] <= 8 &&
+                metric[i] > 0
+            ) {
                 rowData[`${years[i]}color}`] = 'green';
-            } else if (name.substring(0, 6) === 'MCAP/F' && metric[i] <= 9) {
+            } else if (
+                name.substring(0, 6) === 'MCAP/F' &&
+                metric[i] <= 9 &&
+                metric[i] > 0
+            ) {
                 rowData[`${years[i]}color}`] = 'orange';
             } else if (name.substring(0, 6) === 'MCAP/F') {
                 rowData[`${years[i]}color}`] = 'red';
             }
 
-            if (name.substring(0, 2) === 'EV' && metric[i] <= 5) {
+            if (
+                name.substring(0, 2) === 'EV' &&
+                metric[i] <= 5 &&
+                metric[i] > 0
+            ) {
                 rowData[`${years[i]}color}`] = 'veryGreen';
-            } else if (name.substring(0, 2) === 'EV' && metric[i] <= 7) {
+            } else if (
+                name.substring(0, 2) === 'EV' &&
+                metric[i] <= 7 &&
+                metric[i] > 0
+            ) {
                 rowData[`${years[i]}color}`] = 'green';
-            } else if (name.substring(0, 2) === 'EV' && metric[i] <= 8) {
+            } else if (
+                name.substring(0, 2) === 'EV' &&
+                metric[i] <= 8 &&
+                metric[i] > 0
+            ) {
                 rowData[`${years[i]}color}`] = 'orange';
             } else if (name.substring(0, 2) === 'EV') {
                 rowData[`${years[i]}color}`] = 'red';
@@ -167,18 +191,23 @@ const InexpensiveReport = () => {
 
             if (
                 name.substring(0, 6) === 'MCAP/B' ||
-                (name.substring(0, 6) === 'MCAP/T' && metric[i] <= 2)
+                (name.substring(0, 6) === 'MCAP/T' &&
+                    metric[i] <= 2 &&
+                    metric[i] > 0)
             ) {
                 rowData[`${years[i]}color}`] = 'veryGreen';
             } else if (
                 name.substring(0, 6) === 'MCAP/B' ||
                 ((name.substring(0, 6) === 'MCAP/T') === 'EV/OI' &&
-                    metric[i] <= 3)
+                    metric[i] <= 3 &&
+                    metric[i] > 0)
             ) {
                 rowData[`${years[i]}color}`] = 'green';
             } else if (
                 name.substring(0, 6) === 'MCAP/B' ||
-                (name.substring(0, 6) === 'MCAP/T' && metric[i] <= 3.5)
+                (name.substring(0, 6) === 'MCAP/T' &&
+                    metric[i] <= 3.5 &&
+                    metric[i] > 0)
             ) {
                 rowData[`${years[i]}color}`] = 'orange';
             } else if (
@@ -246,6 +275,8 @@ const InexpensiveReport = () => {
         makeIntoRow('MCAP/TBV', mcapTBV, years),
         makeIntoRow('EV/OI', evOI, years),
         makeIntoRow('EV (minus cash) /OI', evCashOI, years),
+    ];
+    const rowsOther = [
         makeIntoRow('Market Capitalization', marketCap, years),
         makeIntoRow('Enterprise Value', enterpriseValue, years),
         makeIntoRow(
@@ -295,6 +326,42 @@ const InexpensiveReport = () => {
                                         }
                                         align='right'
                                     >
+                                        {makeNumberNice(
+                                            row[years[index]],
+                                            row[`${years[index]}sign}`]
+                                        )}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <div className={classes.spaceVertical}>
+                <Typography className={classes.left} variant='h6'>
+                    Other Metrics
+                </Typography>
+            </div>
+            <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label='simple table'>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Metric</TableCell>
+                            {years.map((bulletPoint, index) => (
+                                <TableCell align='right'>
+                                    {years[index]}
+                                </TableCell>
+                            ))}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rowsOther.map((row) => (
+                            <TableRow key={row.name}>
+                                <TableCell component='th' scope='row'>
+                                    {row.name}
+                                </TableCell>
+                                {years.map((bulletPoint, index) => (
+                                    <TableCell align='right'>
                                         {makeNumberNice(
                                             row[years[index]],
                                             row[`${years[index]}sign}`]

@@ -43,8 +43,6 @@ const GoodPastField = ({ goodPastType }) => {
         (state) => state.isItGoodPast[goodPastType + 'Notes']
     );
 
-    console.log(goodPastMetricRedux, goodPastNotesRedux);
-
     let goodPastYears = useSelector((state) => state.isItGoodPast.years);
     let goodPastMetric = goodPastMetricRedux;
     let newNotes = goodPastNotesRedux;
@@ -52,7 +50,6 @@ const GoodPastField = ({ goodPastType }) => {
     if (goodPastYears.length !== goodPastMetric.length) {
         if (goodPastYears.length > goodPastMetric.length) {
             goodPastMetric.push(0);
-            console.log(goodPastMetric);
         } else if (goodPastYears.length < goodPastMetric.length) {
             goodPastMetric.pop();
             goodPastMetric = [...goodPastMetric];
@@ -69,7 +66,6 @@ const GoodPastField = ({ goodPastType }) => {
             );
         }
 
-        console.log(goodPastMetric);
         dispatch(setGoodPastMetric({ goodPastMetric, goodPastType }));
     };
     const updateNotesReact = (event) => {

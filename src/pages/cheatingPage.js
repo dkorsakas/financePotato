@@ -31,14 +31,16 @@ const useStyles = makeStyles((theme) => ({
 const CheatingPage = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    //5V9EKID7NGJJH1I2
+
     let apiKey = '';
     let symbol = '';
 
     const [loading, setLoading] = useState('.');
 
     const parseNumber = (number) => {
-        if (
+        if (number === undefined) {
+            return 0;
+        } else if (
             typeof parseInt(number) !== 'number' ||
             isNaN(parseInt(number)) === true
         ) {
@@ -67,6 +69,7 @@ const CheatingPage = () => {
         ).then((res) => res.json());
 
         //years
+
         console.log(overview);
 
         if (
@@ -356,7 +359,9 @@ const CheatingPage = () => {
 
             setLoading('done');
         } else {
-            setLoading('could not get this stock :( try again');
+            setLoading(
+                `could not get this stock :( try again: ${overview['Error Message']}`
+            );
         }
     };
 
@@ -407,6 +412,11 @@ const CheatingPage = () => {
                         To see how this works and have a demo run - just use:
                         symbol: IBM apiKey: demo
                     </Typography>
+                    <Typography className={classes.textGoesLeft}>
+                        Lastly for some sort of reason it is a bit buggy;
+                        sometimes it works sometimes you need to make a like a 1
+                        minute pause and try again. AAPL should defintely work.
+                    </Typography>
                     <TextField
                         id='symbol'
                         margin='normal'
@@ -434,6 +444,7 @@ const CheatingPage = () => {
                         get data
                     </Button>
                     <Typography>{loading}</Typography>
+                    <div></div>
                 </Grid>
                 <Grid item xs></Grid>
             </Grid>

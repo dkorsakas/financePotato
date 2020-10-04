@@ -71,7 +71,7 @@ const Navbar = () => {
                             component={Link}
                             to='/cheating'
                         >
-                            Cheating
+                            NASDAQ data
                         </MenuItem>
                     </Menu>
 
