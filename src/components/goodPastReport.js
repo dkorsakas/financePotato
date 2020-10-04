@@ -120,12 +120,15 @@ const GoodPastReport = () => {
     //helper functions
 
     const makeNumberNice = (number, sign) => {
-        console.log(number);
-        let niceNumber = number.toLocaleString();
-        if (sign) {
-            niceNumber = niceNumber + sign;
+        if (typeof number === 'number') {
+            let niceNumber = number.toLocaleString();
+            if (sign) {
+                niceNumber = niceNumber + sign;
+            }
+            return niceNumber;
+        } else {
+            return 0;
         }
-        return niceNumber;
     };
 
     const roundNumber = (number) => {
