@@ -32,6 +32,7 @@ const HomePage = () => {
                     >
                         Value Investing Model By Kenneth Jeffrey Marshall
                     </Typography>
+                    <Typography>Website version: 0.9</Typography>
                     <Typography align='left' className={classes.margin40}>
                         Hi, I took a value investing course by KJM and really
                         enjoyed it. In the course we had to analyze various
