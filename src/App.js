@@ -8,6 +8,7 @@ import inexpensivePage from './pages/inexpensivePage';
 import homePage from './pages/homePage';
 import shareholderPage from './pages/shareholderPage';
 import ReportPage from './pages/reportPage';
+import CheatingPage from './pages/cheatingPage';
 import Navbar from './components/navbar';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -47,6 +48,7 @@ function App() {
                                 path='/inexpensive'
                                 component={inexpensivePage}
                             />
+                            <Route path='/cheating' component={CheatingPage} />
                             <Route path='/report' component={ReportPage} />
                         </Switch>
                     </BrowserRouter>
@@ -58,5 +60,5 @@ function App() {
 
 //git push -u origin master
 //var canDrive = age > 16 ? 'yes' : 'no';
-
+//5V9EKID7NGJJH1I2
 export default App;

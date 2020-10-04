@@ -66,6 +66,13 @@ const Navbar = () => {
                         >
                             Shareholder friendliness
                         </MenuItem>
+                        <MenuItem
+                            onClick={handleClose}
+                            component={Link}
+                            to='/cheating'
+                        >
+                            Cheating
+                        </MenuItem>
                     </Menu>
 
                     <Button color='inherit' component={Link} to='/inexpensive'>
