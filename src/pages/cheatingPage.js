@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -398,7 +399,9 @@ const CheatingPage = () => {
                     <Typography className={classes.textGoesLeft}>
                         Wtf is api key? well its like a password that lets you
                         access stock data; you can get your api key by going to:{' '}
-                        <href to='https://www.alphavantage.co/'></href>
+                        <Link href='https://www.alphavantage.co/'>
+                            www.alphavantage.co
+                        </Link>{' '}
                         and registering;
                     </Typography>
                     <Typography className={classes.textGoesLeft}>
@@ -414,8 +417,9 @@ const CheatingPage = () => {
                     </Typography>
                     <Typography className={classes.textGoesLeft}>
                         Lastly for some sort of reason it is a bit buggy;
-                        sometimes it works sometimes you need to make a like a 1
-                        minute pause and try again. AAPL should defintely work.
+                        sometimes it works sometimes you need to refresh the
+                        page wait 5 seconds and try again. AAPL should defintely
+                        work.
                     </Typography>
                     <TextField
                         id='symbol'

@@ -50,7 +50,7 @@ const HomePage = () => {
                     <Typography align='left' className={classes.margin40}>
                         You can learn more about the book and where to get it by
                         going to:
-                        <Link href='www.goodstockscheap.com'>
+                        <Link href='http://www.goodstockscheap.com'>
                             {' '}
                             www.goodstockscheap.com
                         </Link>

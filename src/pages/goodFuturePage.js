@@ -33,19 +33,19 @@ const GoodFuturePage = () => {
                     </Typography>
                     <GoodFutureField
                         understandType='breathAnalysis'
-                        notes='Who are the customers - organizations or consumers? Both? What percentages? What is the age, income, gender, area etc. - the more specfic the better'
+                        notes='to do add some stuff here'
                     />
                     <GoodFutureField
                         understandType='forcesAnalysis'
-                        notes='Who are the customers - organizations or consumers? Both? What percentages? What is the age, income, gender, area etc. - the more specfic the better'
+                        notes='to do add some stuff here'
                     />
                     <GoodFutureField
                         understandType='moatIdentification'
-                        notes='Who are the customers - organizations or consumers? Both? What percentages? What is the age, income, gender, area etc. - the more specfic the better'
+                        notes='to do add some stuff here'
                     />
                     <GoodFutureField
                         understandType='marketGrowth'
-                        notes='Who are the customers - organizations or consumers? Both? What percentages? What is the age, income, gender, area etc. - the more specfic the better'
+                        notes='to do add some stuff here'
                     />
                 </Grid>
                 <Grid item xs></Grid>

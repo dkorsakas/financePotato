@@ -190,75 +190,48 @@ const InexpensiveReport = () => {
             }
 
             if (
-                name.substring(0, 6) === 'MCAP/B' ||
-                (name.substring(0, 6) === 'MCAP/T' &&
-                    metric[i] <= 2 &&
-                    metric[i] > 0)
+                name.substring(0, 6) === 'MCAP/T' &&
+                metric[i] <= 2 &&
+                metric[i] > 0
             ) {
                 rowData[`${years[i]}color}`] = 'veryGreen';
             } else if (
-                name.substring(0, 6) === 'MCAP/B' ||
-                ((name.substring(0, 6) === 'MCAP/T') === 'EV/OI' &&
-                    metric[i] <= 3 &&
-                    metric[i] > 0)
+                name.substring(0, 6) === 'MCAP/T' &&
+                metric[i] <= 3 &&
+                metric[i] > 0
             ) {
                 rowData[`${years[i]}color}`] = 'green';
             } else if (
-                name.substring(0, 6) === 'MCAP/B' ||
-                (name.substring(0, 6) === 'MCAP/T' &&
-                    metric[i] <= 3.5 &&
-                    metric[i] > 0)
+                name.substring(0, 6) === 'MCAP/T' &&
+                metric[i] <= 3.5 &&
+                metric[i] > 0
             ) {
                 rowData[`${years[i]}color}`] = 'orange';
-            } else if (
-                name.substring(0, 6) === 'MCAP/B' ||
-                name.substring(0, 6) === 'MCAP/T'
-            ) {
+            } else if (name.substring(0, 6) === 'MCAP/T') {
                 rowData[`${years[i]}color}`] = 'red';
             }
 
-            // if (
-            //     name.substring(0, 4) === 'Grow' &&
-            //     metric[i] >= infilation[i] + 5
-            // ) {
-            //     rowData[`${years[i]}color}`] = 'veryGreen';
-            // } else if (
-            //     name.substring(0, 4) === 'Grow' &&
-            //     metric[i] >= infilation[i]
-            // ) {
-            //     rowData[`${years[i]}color}`] = 'green';
-            // } else if (
-            //     name.substring(0, 4) === 'Grow' &&
-            //     metric[i] >= infilation[i] - 1
-            // ) {
-            //     rowData[`${years[i]}color}`] = 'orange';
-            // } else if (name.substring(0, 4) === 'Grow') {
-            //     rowData[`${years[i]}color}`] = 'red';
-            // }
-
-            // if (name.substring(0, 4) === 'Liab' && metric[i] <= 200) {
-            //     rowData[`${years[i]}color}`] = 'green';
-            // } else if (name.substring(0, 4) === 'Liab' && metric[i] <= 300) {
-            //     rowData[`${years[i]}color}`] = 'orange';
-            // } else if (name.substring(0, 4) === 'Liab') {
-            //     rowData[`${years[i]}color}`] = 'red';
-            // }
-
-            // if (name.substring(0, 4) === 'Debt' && metric[i] <= 400) {
-            //     rowData[`${years[i]}color}`] = 'veryGreen';
-            // } else if (name.substring(0, 4) === 'Debt' && metric[i] <= 500) {
-            //     rowData[`${years[i]}color}`] = 'orange';
-            // } else if (name.substring(0, 4) === 'Debt') {
-            //     rowData[`${years[i]}color}`] = 'red';
-            // }
-
-            // if (name.substring(0, 4) === 'Inte' && metric[i] >= 5) {
-            //     rowData[`${years[i]}color}`] = 'veryGreen';
-            // } else if (name.substring(0, 4) === 'Inte' && metric[i] >= 4) {
-            //     rowData[`${years[i]}color}`] = 'orange';
-            // } else if (name.substring(0, 4) === 'Inte') {
-            //     rowData[`${years[i]}color}`] = 'red';
-            // }
+            if (
+                name.substring(0, 6) === 'MCAP/B' &&
+                metric[i] <= 2 &&
+                metric[i] > 0
+            ) {
+                rowData[`${years[i]}color}`] = 'veryGreen';
+            } else if (
+                name.substring(0, 6) === 'MCAP/B' &&
+                metric[i] <= 3 &&
+                metric[i] > 0
+            ) {
+                rowData[`${years[i]}color}`] = 'green';
+            } else if (
+                name.substring(0, 6) === 'MCAP/B' &&
+                metric[i] <= 3.5 &&
+                metric[i] > 0
+            ) {
+                rowData[`${years[i]}color}`] = 'orange';
+            } else if (name.substring(0, 6) === 'MCAP/B') {
+                rowData[`${years[i]}color}`] = 'red';
+            }
 
             if (typeof metric[i] !== 'number' || isNaN(metric[i]) === true) {
                 rowData[`${years[i]}color}`] = 'nothing';
