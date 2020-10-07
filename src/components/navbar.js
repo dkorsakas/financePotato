@@ -78,6 +78,9 @@ const Navbar = () => {
                     <Button color='inherit' component={Link} to='/inexpensive'>
                         Is it inexpensive?
                     </Button>
+                    <Button color='inherit' component={Link} to='/calculations'>
+                        Calculations
+                    </Button>
                     <Button color='inherit' component={Link} to='/report'>
                         Report
                     </Button>

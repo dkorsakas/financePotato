@@ -7,6 +7,12 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
+import {
+    calculateRatios,
+    makeIntoRow,
+    makeNumberNice,
+} from '../util/calculateRatios';
+
 //import Divider from '@material-ui/core/Divider';
 
 import Table from '@material-ui/core/Table';
@@ -59,189 +65,20 @@ const InexpensiveReport = () => {
     let isItGoodPast = useSelector((state) => state.isItGoodPast);
 
     let {
-        cashAndCashEquivalents,
-
+        mcapBV,
+        mcapFCF,
+        mcapTBV,
+        evOI,
+        evCashOI,
+        enterpriseValue,
+        enterpriseValueCash,
         years,
-        operatingIncome,
-
-        totalEquity,
-        intangibleAssets,
-
-        debt,
-        preferredEquity,
-
-        currentSharePrice,
-        currentSharesOutstanding,
-    } = isItGoodPast;
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // MarketCapitalization calcutalion
-    let marketCap = [];
-
-    for (let i = 0; i < years.length; i++) {
-        marketCap.push(currentSharePrice[i] * currentSharesOutstanding[i]);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // MarketCapitalization calcutalion
-    let enterpriseValue = [];
-    let enterpriseValueCash = [];
-
-    for (let i = 0; i < years.length; i++) {
-        enterpriseValue.push(marketCap[i] + debt[i] + preferredEquity[i]);
-    }
-
-    for (let i = 0; i < years.length; i++) {
-        enterpriseValueCash.push(
-            enterpriseValue[i] - cashAndCashEquivalents[i]
-        );
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Inxepensiveness ratios
-    let mcapFCF = [];
-    let mcapBV = [];
-    let mcapTBV = [];
-    let evOI = [];
-    let evCashOI = [];
-
-    let tangibleBookValue = [];
-    for (let i = 0; i < years.length; i++) {
-        tangibleBookValue.push(totalEquity[i] - intangibleAssets[i]);
-    }
-
-    for (let i = 0; i < years.length; i++) {
-        mcapFCF.push(
-            marketCap[i] /
-                (isItGoodPast.cashFlowFromOperations[i] -
-                    isItGoodPast.maintainenceCapitalExpenditures[i])
-        );
-        mcapBV.push(marketCap[i] / totalEquity[i]);
-        mcapTBV.push(marketCap[i] / tangibleBookValue[i]);
-
-        evOI.push(enterpriseValue[i] / operatingIncome[i]);
-        evCashOI.push(enterpriseValueCash[i] / operatingIncome[i]);
-    }
+        marketCap,
+    } = calculateRatios(isItGoodPast);
 
     /////////////////////////////////////////////////////////////////////////////////////
     //helper functions
 
-    const makeNumberNice = (number, sign) => {
-        let niceNumber = number.toLocaleString();
-        if (sign) {
-            niceNumber = niceNumber + sign;
-        }
-        return niceNumber;
-    };
-
-    // const roundNumber = (number) => {
-    //     return Math.round(number * 100) / 100;
-    // };
-
-    const makeIntoRow = (name, metric, years) => {
-        let rowData = { name };
-        for (let i = 0; i < years.length; i++) {
-            rowData[years[i]] = metric[i];
-
-            rowData[`${years[i]}sign}`] = '';
-
-            if (
-                name.substring(0, 6) === 'MCAP/F' &&
-                metric[i] <= 6 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'veryGreen';
-            } else if (
-                name.substring(0, 6) === 'MCAP/F' &&
-                metric[i] <= 8 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'green';
-            } else if (
-                name.substring(0, 6) === 'MCAP/F' &&
-                metric[i] <= 9 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'orange';
-            } else if (name.substring(0, 6) === 'MCAP/F') {
-                rowData[`${years[i]}color}`] = 'red';
-            }
-
-            if (
-                name.substring(0, 2) === 'EV' &&
-                metric[i] <= 5 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'veryGreen';
-            } else if (
-                name.substring(0, 2) === 'EV' &&
-                metric[i] <= 7 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'green';
-            } else if (
-                name.substring(0, 2) === 'EV' &&
-                metric[i] <= 8 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'orange';
-            } else if (name.substring(0, 2) === 'EV') {
-                rowData[`${years[i]}color}`] = 'red';
-            }
-
-            if (
-                name.substring(0, 6) === 'MCAP/T' &&
-                metric[i] <= 2 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'veryGreen';
-            } else if (
-                name.substring(0, 6) === 'MCAP/T' &&
-                metric[i] <= 3 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'green';
-            } else if (
-                name.substring(0, 6) === 'MCAP/T' &&
-                metric[i] <= 3.5 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'orange';
-            } else if (name.substring(0, 6) === 'MCAP/T') {
-                rowData[`${years[i]}color}`] = 'red';
-            }
-
-            if (
-                name.substring(0, 6) === 'MCAP/B' &&
-                metric[i] <= 2 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'veryGreen';
-            } else if (
-                name.substring(0, 6) === 'MCAP/B' &&
-                metric[i] <= 3 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'green';
-            } else if (
-                name.substring(0, 6) === 'MCAP/B' &&
-                metric[i] <= 3.5 &&
-                metric[i] > 0
-            ) {
-                rowData[`${years[i]}color}`] = 'orange';
-            } else if (name.substring(0, 6) === 'MCAP/B') {
-                rowData[`${years[i]}color}`] = 'red';
-            }
-
-            if (typeof metric[i] !== 'number' || isNaN(metric[i]) === true) {
-                rowData[`${years[i]}color}`] = 'nothing';
-            }
-        }
-
-        return rowData;
-    };
-
-    // creating rows for the metrics table
     const rows = [
         makeIntoRow('MCAP/FCF', mcapFCF, years),
         makeIntoRow('MCAP/BV', mcapBV, years),

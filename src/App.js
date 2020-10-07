@@ -9,6 +9,7 @@ import homePage from './pages/homePage';
 import shareholderPage from './pages/shareholderPage';
 import ReportPage from './pages/reportPage';
 import CheatingPage from './pages/cheatingPage';
+import CalculationsPage from './pages/calculationsPage';
 import Navbar from './components/navbar';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -47,6 +48,10 @@ function App() {
                             <Route
                                 path='/inexpensive'
                                 component={inexpensivePage}
+                            />
+                            <Route
+                                path='/calculations'
+                                component={CalculationsPage}
                             />
                             <Route path='/cheating' component={CheatingPage} />
                             <Route path='/report' component={ReportPage} />
