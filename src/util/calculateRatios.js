@@ -476,7 +476,13 @@ export const calculateRatios = (isItGoodPast) => {
 };
 
 export const makeNumberNice = (number, sign) => {
-    let niceNumber = number.toLocaleString();
+    let niceNumber;
+    if (number === undefined) {
+        niceNumber = '0';
+    } else {
+        niceNumber = number.toLocaleString();
+    }
+
     if (sign) {
         niceNumber = niceNumber + sign;
     }

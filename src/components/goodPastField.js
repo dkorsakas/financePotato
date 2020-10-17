@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import { evaluate } from 'mathjs';
+
+console.log(evaluate('2+3+++3'));
 
 const useStyles = makeStyles((theme) => ({
     root: {
